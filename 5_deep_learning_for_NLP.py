@@ -220,3 +220,39 @@ X_test = np.zeros((1, maxlen, len(vocabulary)))
 # Iterate over each character and convert them to one-hot encoded vector.
 for s_idx, char in enumerate(sentence):
     X_test[0, s_idx, char_to_idx[char]] = 1
+    
+# Get the probability distribution using model predict
+preds = model.predict(X_test, verbose=0)
+
+# Get the probability distribution for the first character after the sequence
+preds_next_char = preds[0]
+
+
+
+#Generate text imitating Shakespeare
+#In the previous exercise, you got the probability distribution for the next character. 
+#In this exercise, you'll find out the character having maximum probability which is the next predicted character.
+
+#You can append this newly generated character to the existing sentence and feed it again to the trained model to generate the next character. 
+#You can continue this process for an arbitrarily long time to generate texts of any length.
+
+#A function generate_text() that does this is available for use. 
+#This function takes a starting sentence and the number of characters to be generated as input. 
+#In this exercise, you'll use a model pre-trained on the full dataset for 20 epochs. 
+#You'll also use this function to generate 500 new characters given a sentence as input.
+
+# Get the probability distribution of next character
+preds = model.predict(X_test, verbose=0)[0]
+
+# Get the index of the most probable next character
+next_index = np.argmax(preds)
+
+# Map the index to the actual character and print it
+next_char = idx_to_char[next_index]
+
+# Print the next character
+print(next_char)
+
+# Input sequence and generate text
+sentence = "that, poor contempt, or claim'd thou sle"
+generate_text(sentence, 500)
