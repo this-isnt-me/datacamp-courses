@@ -30,6 +30,7 @@ model.compile(loss='binary_crossentropy', optimizer='adam')
 gradients = backend.gradients(model.output, model.trainable_weights)
 
 
+
 # Vanishing Gradients
 
 #Before you start working on more robust applications of language generation, it's best to learn how to identify when you are suffering from the vanishing gradient problem. 
@@ -58,3 +59,32 @@ evaluated_gradients = sess.run(gradients,feed_dict={model.input:input_vector})
 # Print gradient values from third layer and two nodes of the second layer
 print(evaluated_gradients[4])
 print(evaluated_gradients[2][4])
+
+
+
+#Vocabulary and character to integer mapping
+
+#Suppose you're working as a Data Scientist in a company that is creating an automatic content generation system to assist human writers and make the writing process 
+#more efficient and effective. This system needs to generate text imitating a human writer. 
+#Throughout the remainder of this chapter, you will be working on creating a system that generates text in the style of Shakespeare.
+
+#To do this, you will need to first find the vocabulary from the dataset and then create two dictionaries to contain mappings of characters to integers and integers 
+#to characters.
+
+#A small collection of Shakespeare's literary works is saved in a string variable named text. All characters in text are in lowercase.
+
+# Find the vocabulary
+vocabulary = sorted(set(text))
+
+# Print the vocabulary size
+print('Vocabulary size:', len(vocabulary))
+
+# Dictionary to save the mapping from char to integer
+char_to_idx = { char : idx for idx, char in enumerate(vocabulary) }
+
+# Dictionary to save the mapping from integer to char
+idx_to_char = { idx : char for idx, char in enumerate(vocabulary) }
+
+# Print char_to_idx and idx_to_char
+print(char_to_idx)
+print(idx_to_char)
