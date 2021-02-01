@@ -2,7 +2,7 @@
 
 ### Write like Shakespeare
 
-Simple network using Keras
+#Simple network using Keras
 
 #By now you have an intuitive understanding of how the gradient values become lesser and lesser as we back-propagate. 
 #In this exercise, you'll work on an example to demonstrate this vanishing gradient problem. 
@@ -10,6 +10,8 @@ Simple network using Keras
 
 #The Sequential model and the Dense and Activation layers are already imported from Keras. The Keras module backend is also imported. 
 #This has a method .gradients() that can be used to get the gradient values of the weights.
+
+from keras.layers import Activation, Dense 
 
 # Create a sequential model
 model = Sequential()
